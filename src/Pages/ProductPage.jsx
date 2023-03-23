@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router'
 import axios from 'axios'
+import useFetch from '../hooks/useFetch'
 
 function ProductPage() {
     let { productId:id } = useParams()
 
-
+    // INITIAL PARAMS
     const [activeGallery, setActiveGallery] = useState(false)
     const [activeImage, setActiveImage] = useState(null)
     const [activeIndex, setActiveIndex] = useState(0)
@@ -18,11 +19,7 @@ function ProductPage() {
         }
     })
 
-    const {data, isFetching, isLoading } = useQuery('product', () => {
-        return axios.get(`https://dummyjson.com/products/${id}`)
-    }, {
-        refetchOnWindowFocus: false
-    })
+    const { data, isFetching, isLoading } = useFetch('product', `https://dummyjson.com/auth/products/${id}`)
 
     if(isFetching || isLoading){
         return <section style={{display:'flex', alignItems:'center', justifyContent:'center', height:'100vh'}}><h1 style={{display:'flex', alignItems:'center'}}>Loading product! <ion-icon name="hourglass-outline"></ion-icon></h1></section>

@@ -3,10 +3,10 @@ import { createContext, useState } from "react";
 const AppContext = createContext()
 
 export function AppProvider({children}){
-    // const [token, setToken] = useState()
-
+    const [activeUser, setActiveUser] = useState()
+    
     return(
-        <AppContext.Provider value={{}}>
+        <AppContext.Provider value={{activeUser, setActiveUser}}>
             {children}
         </AppContext.Provider>
     )

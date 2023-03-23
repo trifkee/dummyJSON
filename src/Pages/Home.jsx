@@ -1,29 +1,24 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import Product from '../Components/Product'
+import useFetch from '../hooks/useFetch'
+// import useAuth from '../hooks/useAuth'
+import AppContext from '../store/context'
 
 function Home() {
+
   // STATES
   const [searchValue, setSearchValue] = useState('')
   const [categoryName, setCategoryName] = useState('all')
-  const [temp,setTemp] = useState([])
+  const [temp, setTemp] = useState([])
 
   // FETCHING DATA
   // fetch all products
   let path = categoryName === 'all' ? 'products' : `products/category/${categoryName}`
 
-  const { data:allData, isFetching, refetch } = useQuery({
-    queyrKey: ['allProducts', categoryName, path],
-    queryFn: () => axios.get(`https://dummyjson.com/${path}`),
-    refetchOnWindowFocus: false,
-    keepPreviousData: true,
-  })
-
-  // fetch all categories
-  const { data:categories } = useQuery('categories', () =>{
-    return axios.get('https://dummyjson.com/products/categories')
-  })
+  const { data:allData, isFetching, refetch } = useFetch('allProducts', `https://dummyjson.com/auth/${path}`)
+  const { data:categories } = useFetch('categories', `https://dummyjson.com/auth/products/categories`)
 
   // FUNCTIONS
   const handleCategory = (e) => {
@@ -38,8 +33,7 @@ function Home() {
   useEffect(() => {
     if(searchValue) {
       const filteredArray = allData.data.products.filter((item => item.title.toLowerCase().includes(searchValue)))
-      console.log('allData', filteredArray)
-      setTemp(filteredArray);
+      return setTemp(filteredArray);
     } else {
       setTemp([]);
     }
@@ -59,7 +53,7 @@ function Home() {
   }
 
   const returnData = () => {
-    if(searchValue) {
+    if(searchValue.length > 2) {
       return temp.map(product => <Product key={product.id} id={product.id} props={product} />)
     } else {
       return allData?.data.products.map(product => <Product key={product.id} id={product.id} props={product} />)

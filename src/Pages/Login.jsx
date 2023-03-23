@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
-// import axios from 'axios'
-// import axiosInstance from '../axiosInstance'
 import { useNavigate } from 'react-router'
+import AppContext from '../store/context'
+import useAuth from '../hooks/useAuth'
 
 function Login() {
     const navigate = useNavigate()
+
+    const { setActiveUser } = useContext(AppContext)
 
     const [user, setUser] = useState(
         {
@@ -14,7 +16,16 @@ function Login() {
         }
     )
 
-    const fetchUser = (e) => {
+    const [logged, setLogged] = useAuth()
+
+    useEffect(() => {
+        if(logged) {
+           return navigate('/')
+        }
+    }, [logged])
+
+    // POST LOGIN METHOD
+    const fetchUser = () => {
         return fetch('https://dummyjson.com/auth/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -26,18 +37,19 @@ function Login() {
           .then(res => res.json())
     }
 
-    const onSuccess = (data) => {
-        console.log(data)
+    const handleOnSuccess = data => {
         if(data?.token){
+            setLogged(true)
+            setActiveUser(data)
+            localStorage.setItem('user', data.id)
             localStorage.setItem('token', data.token)
             navigate('/')
         }
     }
 
-    // const { data, isFetching, isFetched } = useQuery('user', () => handleSubmit)
     const { mutate:handleSubmit } = useMutation({
         mutationFn: fetchUser,
-        onSuccess: data => onSuccess(data),
+        onSuccess: data => handleOnSuccess(data),
         onError: err => console.log(err)
     })
 
