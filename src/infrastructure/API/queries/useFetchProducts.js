@@ -6,5 +6,6 @@ export const useFetchProducts = (key, url) => {
         queryKey:[key],
         queryFn: () => fetchProducts(url),
         refetchOnWindowFocus: false,
-    })
+        retry:1
+    })    
 }

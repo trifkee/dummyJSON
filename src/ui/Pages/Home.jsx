@@ -16,7 +16,7 @@ function Home() {
   // fetch all products
   let path = categoryName === 'all' ? 'products' : `products/category/${categoryName}`
 
-  const { data:allData, isFetching, refetch } = useFetchProducts('allProducts', path)
+  const { data:allData, isFetching, refetch, isError } = useFetchProducts('allProducts', path)
   const { data:categories } = useFetchCategories('categories')
 
   // FUNCTIONS

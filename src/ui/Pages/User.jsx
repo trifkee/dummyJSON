@@ -19,7 +19,7 @@ function User() {
     return setActive(false)
   }
   // QUERYING DATA
-  const { data:user, isFetching:userFetch } = useFetchUser('user', `${currUser}`)
+  const { data:user, isFetching:userFetch } = useFetchUser('user', `${localStorage.getItem('user')}`)
   const { data:userPosts, isFetching } = useFetchUserPosts('userPosts', `${id}`)
 
   const handleLogOut = () => {
