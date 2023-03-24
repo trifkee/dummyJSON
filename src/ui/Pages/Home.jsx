@@ -1,10 +1,6 @@
-import axios from 'axios'
-import React, { useContext, useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
-import Product from '../Components/Product'
-import useFetch from '../hooks/useFetch'
-// import useAuth from '../hooks/useAuth'
-import AppContext from '../store/context'
+import React, { useEffect, useState } from 'react'
+import Product from '../../ui/Components/Product'
+import useFetch from '../../infrastructure/hooks/useFetch'
 
 function Home() {
 

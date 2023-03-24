@@ -1,21 +1,13 @@
-import axios from "axios"
 import { useState } from "react"
 import { useMutation } from "react-query"
+import { postData } from "../API/mutations/postData"
 
 function usePost(url, body) {
 
     const [posted, setPosted] = useState(false)
 
-    const fetchData = () => {
-        return axios.post(url, {...body}, {
-            headers:{
-                'Authorization': `Bearer ${localStorage.getItem('token')}`, 
-            }
-        })
-    }
-
     const { mutate } = useMutation({
-        mutationFn: fetchData,
+        mutationFn: () => postData(url, body),
         onSuccess: () => {
             setPosted(true)
 

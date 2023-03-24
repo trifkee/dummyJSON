@@ -9,7 +9,7 @@ function useAuth() {
 
         if(token) setLogged(true)
 
-    }, [])
+    }, [token])
 
     return [logged, setLogged]
 }

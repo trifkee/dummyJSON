@@ -1,13 +1,12 @@
 import { useQuery } from "react-query"
-import axios from "axios"
 import { useNavigate } from "react-router"
+import  { fetchData }  from "../API/queries/fetchData"
 
 const useFetch = (key, url) => {
     const navigate = useNavigate()
     
     const handleError = (err) => {
-        console.log(err.response.status)
-        if(err.response.status === 401){
+        if(err.response?.status === 401){
             localStorage.removeItem('token')
             localStorage.removeItem('user')
             navigate('/login')
@@ -16,14 +15,7 @@ const useFetch = (key, url) => {
 
     const { data, isFetching, refetch, isLoading } = useQuery({
         queryKey:[key, url],
-        queryFn: () => {
-            return axios.get(url, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`, 
-                    'Content-Type': 'application/json'
-                }
-            })
-        },
+        queryFn: () => fetchData(url),
         refetchOnWindowFocus: false,
         onError: (err) => handleError(err),
         retry: 1

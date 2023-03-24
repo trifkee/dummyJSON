@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router'
 import Product from '../Components/Product'
-import useFetch from '../hooks/useFetch'
+import useFetch from '../../infrastructure/hooks/useFetch'
 
 export default function Search() {
     const { searchValue } = useParams()

@@ -3,17 +3,17 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools'
 // COMPONENTS & PAGES
-import Nav from "./Components/Nav";
-import Home from "./Pages/Home";
-import Login from "./Pages/Login";
-import ProductPage from './Pages/ProductPage'
-import Search from "./Pages/Search";
-import User from "./Pages/User";
-import SinglePost from "./Pages/SinglePost";
-import NewPost from "./Pages/NewPost";
-import AllPosts from './Pages/AllPosts';
+import Nav from "./ui/Components/Nav";
+import Home from "./ui/Pages/Home";
+import Login from "./ui/Pages/Login";
+import ProductPage from './ui/Pages/ProductPage'
+import Search from "./ui/Pages/Search";
+import User from "./ui/Pages/User";
+import SinglePost from "./ui/Pages/SinglePost";
+import NewPost from "./ui/Pages/NewPost";
+import AllPosts from './ui/Pages/AllPosts';
 // CUSTOM HOOKS
-import useAuth from "./hooks/useAuth";
+import useAuth from "./infrastructure/hooks/useAuth";
 
 const queryClient = new QueryClient()
 

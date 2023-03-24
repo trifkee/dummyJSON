@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import useFetch from '../hooks/useFetch'
-import Post from '../Components/Post'
+import useFetch from '../../infrastructure/hooks/useFetch'
+import Post from '../../ui/Components/Post'
 
 function AllPosts() {
     const [page, setPage] = useState(1)

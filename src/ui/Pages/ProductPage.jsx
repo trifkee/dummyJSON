@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-import { useQuery } from 'react-query'
 import { useParams } from 'react-router'
-import axios from 'axios'
-import useFetch from '../hooks/useFetch'
+import useFetch from '../../infrastructure/hooks/useFetch'
 
 function ProductPage() {
     let { productId:id } = useParams()

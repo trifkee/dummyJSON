@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import Post from '../Components/Post'
-import NewPost from './NewPost'
-import useFetch from '../hooks/useFetch'
+import NewPost from '../Pages/NewPost'
+import useFetch from '../../infrastructure/hooks/useFetch'
 
 function User() {
   const currUser = localStorage.getItem('user')

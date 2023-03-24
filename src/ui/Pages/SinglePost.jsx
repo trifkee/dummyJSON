@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useMutation } from 'react-query'
 import { useParams } from 'react-router'
-import useFetch from '../hooks/useFetch'
-import usePost from '../hooks/usePost'
+import useFetch from '../../infrastructure/hooks/useFetch'
+import usePost from '../../infrastructure/hooks/usePost'
 
 function SinglePost() {
 
