@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router'
 // HOOKS
 import { useFetchCategories } from '../../infrastructure/API/queries/useFetchCategories'
 import { useFetchProducts } from '../../infrastructure/API/queries/useFetchProducts'
@@ -6,6 +7,7 @@ import { useFetchProducts } from '../../infrastructure/API/queries/useFetchProdu
 import Product from '../../ui/Components/Product'
 
 function Home() {
+  const navigate = useNavigate()
 
   // STATES
   const [searchValue, setSearchValue] = useState('')
@@ -13,7 +15,7 @@ function Home() {
   const [temp, setTemp] = useState([])
 
   // FETCHING DATA
-  // fetch all products
+    // fetch all products
   let path = categoryName === 'all' ? 'products' : `products/category/${categoryName}`
 
   const { data:allData, isFetching, refetch, isError } = useFetchProducts('allProducts', path)
@@ -49,6 +51,12 @@ function Home() {
         <h2 style={{display:'flex', alignItems:'center'}}>Loading. <ion-icon name="hourglass-outline"></ion-icon></h2>
       </section>
     )
+  }
+
+  if(isError){
+    localStorage.removeItem('user')
+    localStorage.removeItem('token')
+    navigate('/login')
   }
 
   const returnData = () => {
