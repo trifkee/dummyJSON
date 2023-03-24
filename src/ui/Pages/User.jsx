@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
+// HOOKS
+import { useFetchUser } from '../../infrastructure/API/queries/useFetchUser'
+import { useFetchUserPosts } from '../../infrastructure/API/queries/useFetchUserPosts'
+// UI
 import Post from '../Components/Post'
 import NewPost from '../Pages/NewPost'
-import useFetch from '../../infrastructure/hooks/useFetch'
 
 function User() {
   const currUser = localStorage.getItem('user')
@@ -16,8 +19,8 @@ function User() {
     return setActive(false)
   }
   // QUERYING DATA
-  const { data:user, isFetching:userFetch } = useFetch('user', `https://dummyjson.com/auth/users/${id}`)
-  const { data:userPosts, isFetching } = useFetch('userPosts', `https://dummyjson.com/auth/posts/user/${id}`)
+  const { data:user, isFetching:userFetch } = useFetchUser('user', `${currUser}`)
+  const { data:userPosts, isFetching } = useFetchUserPosts('userPosts', `${id}`)
 
   const handleLogOut = () => {
     localStorage.removeItem('token')

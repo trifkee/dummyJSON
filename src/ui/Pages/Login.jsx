@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router'
+// HOOKS
+import useAuth from '../../hooks/useAuth'
 import AppContext from '../../infrastructure/store/context'
-import useAuth from '../../infrastructure/hooks/useAuth'
 
 function Login() {
     const navigate = useNavigate()

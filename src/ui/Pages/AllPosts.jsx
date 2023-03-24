@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import useFetch from '../../infrastructure/hooks/useFetch'
+// HOOKS
+import { useFetchUsers } from '../../infrastructure/API/queries/useFetchUsers'
+import { useFetchAllPosts } from '../../infrastructure/API/queries/useFetchAllPosts'
+// UI
 import Post from '../../ui/Components/Post'
 
 function AllPosts() {
     const [page, setPage] = useState(1)
 
-    const { data:allUsers } = useFetch('users', `https://dummyjson.com/auth/users`)
-    const { data:allPosts, refetch, isFetching } = useFetch('post', `https://dummyjson.com/auth/posts?limit=4&skip=${page*4}`)
+    const { data:allUsers } = useFetchUsers('users')
+    const { data:allPosts, refetch, isFetching } = useFetchAllPosts('posts', `?limit=4&skip=${page*4}`)
 
     // PAGINATION
     const handlePagination = (e) => {
@@ -36,7 +39,7 @@ function AllPosts() {
     }
 
     // SHOWING ALL POSTS + isFetching
-    const fetchPosts = () => {
+    const ifFetchPosts = () => {
         if(isFetching){
             return <h2 style={{marginTop:'3rem'}}>LOADING...</h2>
         }
@@ -51,7 +54,7 @@ function AllPosts() {
                 </div>
                 <div className="post-list" style={{marginInline:'auto'}}>
                     <div className="profile-posts">
-                        {fetchPosts()}
+                        {ifFetchPosts()}
                     </div>
                 </div>
 

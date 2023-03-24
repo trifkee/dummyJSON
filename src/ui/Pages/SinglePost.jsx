@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import useFetch from '../../infrastructure/hooks/useFetch'
-import usePost from '../../infrastructure/hooks/usePost'
+// HOOKS
+import { useFetchUser } from '../../infrastructure/API/queries/useFetchUser'
+import { useFetchComments } from '../../infrastructure/API/queries/useFetchComments'
+import { useFetchPost } from '../../infrastructure/API/queries/useFetchPost'
+import usePost from '../../infrastructure/API/mutations/usePost'
 
 function SinglePost() {
 
@@ -22,10 +25,10 @@ function SinglePost() {
     
     // CUSTOM HOOKS
     const { mutate, posted } = usePost(`https://dummyjson.com/auth/comments/add`, body)
-    const { data } = useFetch('Post', `https://dummyjson.com/auth/posts/${id}`)
-    const { data:user } = useFetch('PostUser', `https://dummyjson.com/auth/users/${localUserId}`)
-    const { data:comments } = useFetch('PostComments', `https://dummyjson.com/auth/posts/${id}/comments`)
-    
+    const { data } = useFetchPost('Post', `${id}`)
+    const { data:user } = useFetchUser('PostUser', `${localUserId}`)
+    const { data:comments } = useFetchComments('PostComments', `${id}`)
+
     useEffect(() => {
         if(posted){
             return setComment('')

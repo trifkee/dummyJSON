@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import usePost from '../../infrastructure/hooks/usePost'
+// HOOKS
+import usePost from '../../infrastructure/API/mutations/usePost'
 
 function NewPost({handleForm}) {
 

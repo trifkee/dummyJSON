@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
+// HOOKS
+import { useFetchCategories } from '../../infrastructure/API/queries/useFetchCategories'
+import { useFetchProducts } from '../../infrastructure/API/queries/useFetchProducts'
+// UI
 import Product from '../../ui/Components/Product'
-import useFetch from '../../infrastructure/hooks/useFetch'
 
 function Home() {
 
@@ -13,8 +16,8 @@ function Home() {
   // fetch all products
   let path = categoryName === 'all' ? 'products' : `products/category/${categoryName}`
 
-  const { data:allData, isFetching, refetch } = useFetch('allProducts', `https://dummyjson.com/auth/${path}`)
-  const { data:categories } = useFetch('categories', `https://dummyjson.com/auth/products/categories`)
+  const { data:allData, isFetching, refetch } = useFetchProducts('allProducts', path)
+  const { data:categories } = useFetchCategories('categories')
 
   // FUNCTIONS
   const handleCategory = (e) => {

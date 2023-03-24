@@ -1,32 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import { useQuery } from 'react-query'
+import { useLogout } from '../../hooks/useLogout'
+import { useFetchUser } from '../../infrastructure/API/queries/useFetchUser'
 
 function Nav() {
-  let navigate = useNavigate()
+  const navigate = useNavigate()
+
   let currUser = localStorage.getItem('user')
 
   const [active, isActive] = useState(false)
-
+  
   // FETCH USER
-  const { data:user } = useQuery({
-    queryKey: ['user', currUser],
-    queryFn: () => {
-      return axios.get(`https://dummyjson.com/users/${localStorage.getItem('user')}`)
-    },
-    refetchOnWindowFocus:false,
-  })
+  const { data:user } = useFetchUser('user', `${currUser}`)
 
   // TOGGLE NAV ON MOBILE
   const handleClick = () => {
     isActive(prevActive => !prevActive)
-  }
-
-  const handleLogOut = () => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('user')
-    navigate('/login')
   }
 
   // IF USER IS LOGGED IN
@@ -45,7 +34,7 @@ function Nav() {
               <Link className='nav-user' to={`/profile/${currUser}`} style={{display:'flex', alignItems:'center', gap:'1rem'}}><ion-icon name="person"></ion-icon> {user?.data.username || 'Profile'}
                 <div className="nav-additional">
                   <p style={{display:'flex', gap:'.5rem', alignItems:'center', marginBottom:'.5rem'}}>Sign out <ion-icon name="log-out-outline"></ion-icon></p>
-                  <button onClick={handleLogOut}>sign out</button>
+                  <button onClick={useLogout}>sign out</button>
                 </div>
               </Link>
           </ul>

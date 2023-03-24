@@ -1,13 +1,12 @@
 import { useState } from "react"
 import { useMutation } from "react-query"
-import { postData } from "../API/mutations/postData"
 
-function usePost(url, body) {
+function usePost(url, body, query) {
 
     const [posted, setPosted] = useState(false)
 
     const { mutate } = useMutation({
-        mutationFn: () => postData(url, body),
+        mutationFn: () => query(url, body),
         onSuccess: () => {
             setPosted(true)
 

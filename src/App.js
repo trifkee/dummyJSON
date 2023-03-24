@@ -13,7 +13,7 @@ import SinglePost from "./ui/Pages/SinglePost";
 import NewPost from "./ui/Pages/NewPost";
 import AllPosts from './ui/Pages/AllPosts';
 // CUSTOM HOOKS
-import useAuth from "./infrastructure/hooks/useAuth";
+import useAuth from "./hooks/useAuth";
 
 const queryClient = new QueryClient()
 

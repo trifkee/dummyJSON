@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router'
-import useFetch from '../../infrastructure/hooks/useFetch'
+// HOOKS
+import { useFetchProduct } from '../../infrastructure/API/queries/useFetchProduct'
 
 function ProductPage() {
     let { productId:id } = useParams()
@@ -17,7 +18,7 @@ function ProductPage() {
         }
     })
 
-    const { data, isFetching, isLoading } = useFetch('product', `https://dummyjson.com/auth/products/${id}`)
+    const { data, isFetching, isLoading } = useFetchProduct('product',`${id}`)
 
     if(isFetching || isLoading){
         return <section style={{display:'flex', alignItems:'center', justifyContent:'center', height:'100vh'}}><h1 style={{display:'flex', alignItems:'center'}}>Loading product! <ion-icon name="hourglass-outline"></ion-icon></h1></section>
