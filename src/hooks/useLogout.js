@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router"
+import { redirect } from "react-router"
 
 export const useLogout = (data) => {
     
     const [message, setMessage] = useState('')
-
-    const navigate = useNavigate()
 
     if(data){
         alert(message)
@@ -15,6 +13,6 @@ export const useLogout = (data) => {
         localStorage.removeItem('token')
         localStorage.removeItem('user')
         
-        navigate('/login')
+        return redirect('/login')
     }, [])
 }

@@ -6,5 +6,6 @@ export const useFetchUser = (key, url) => {
         queryKey: [key],
         queryFn: () => fetchUser(url),
         refetchOnWindowFocus: false,
+        retry:1,
     })
 }

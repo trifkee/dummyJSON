@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 // HOOKS
-import usePost from '../../infrastructure/API/mutations/usePost'
+import { useNewPost } from '../../infrastructure/API/mutations/useNewPost'
 
 function NewPost({handleForm}) {
 
@@ -19,7 +19,7 @@ function NewPost({handleForm}) {
         ...post,
         userId: JSON.parse(localStorage.getItem('user'))
     }
-    const { mutate:handleSubmit, posted } = usePost(`https://dummyjson.com/auth/posts/add`, body)
+    const { mutate:handleSubmit, posted } = useNewPost('newPost', `https://dummyjson.com/auth/posts/add`, body)
     
     useEffect(() => {
         if(posted){

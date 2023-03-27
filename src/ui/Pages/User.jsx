@@ -13,6 +13,8 @@ function User() {
 
   const navigate = useNavigate()
 
+  !currUser && navigate('/login')
+
   const [active, setActive] = useState(false)
 
   const handleForm = () => {

@@ -4,8 +4,7 @@ import { useParams } from 'react-router'
 import { useFetchUser } from '../../infrastructure/API/queries/useFetchUser'
 import { useFetchComments } from '../../infrastructure/API/queries/useFetchComments'
 import { useFetchPost } from '../../infrastructure/API/queries/useFetchPost'
-import usePost from '../../infrastructure/API/mutations/usePost'
-
+import { usePostComment } from '../../infrastructure/API/mutations/usePostComment'
 function SinglePost() {
 
     let { postId:id } = useParams()
@@ -24,7 +23,7 @@ function SinglePost() {
     }
     
     // CUSTOM HOOKS
-    const { mutate, posted } = usePost(`https://dummyjson.com/auth/comments/add`, body)
+    const { mutate, posted } = usePostComment('comment', `https://dummyjson.com/auth/comments/add`, body)
     const { data } = useFetchPost('Post', `${id}`)
     const { data:user } = useFetchUser('PostUser', `${localUserId}`)
     const { data:comments } = useFetchComments('PostComments', `${id}`)
