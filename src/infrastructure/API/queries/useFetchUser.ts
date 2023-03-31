@@ -7,5 +7,6 @@ export const useFetchUser = (key:string, url:string) => {
         queryFn: () => fetchUser(url),
         refetchOnWindowFocus: false,
         retry:1,
+        enabled: false,
     })
 }

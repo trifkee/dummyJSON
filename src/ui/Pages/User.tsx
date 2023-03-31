@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { SinglePost } from '../../domain/interfaces/posts/posts'
 // HOOKS
@@ -14,7 +14,16 @@ function User() {
 
   const navigate = useNavigate()
 
-  !currUser && navigate('/login')
+  useEffect(() => {
+    !currUser ? navigate('/login') : refetchAll()
+  }, [])
+
+  function refetchAll(){
+    userRefetch()
+    postRefetch()
+  }
+
+  // !currUser && navigate('/login')
 
   const [active, setActive] = useState(false)
 
@@ -22,9 +31,9 @@ function User() {
     return setActive(false)
   }
   // QUERYING DATA
-  const { data:user, isFetching:userFetch } = useFetchUser('user', `${currUser}`)
+  const { data:user, isFetching:userFetch, refetch:userRefetch } = useFetchUser('user', `${currUser}`)
   // const { data:user, isFetching:userFetch } = useFetchUser('user', `${localStorage.getItem('user')}`)
-  const { data:userPosts, isFetching } = useFetchUserPosts('userPosts', `${id}`)
+  const { data:userPosts, isFetching, refetch:postRefetch } = useFetchUserPosts('userPosts', `${id}`)
 
   const handleLogOut = () => {
     localStorage.removeItem('token')

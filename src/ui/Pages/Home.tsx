@@ -66,7 +66,7 @@ function Home() {
     )
   }
 
-  if(isError){
+  if(isError || !localStorage.getItem('user')){
     localStorage.removeItem('user')
     localStorage.removeItem('token')
     navigate('/login')
@@ -75,7 +75,6 @@ function Home() {
   const returnData = () => {
     if(searchValue.length > 2) {
       return temp.map((product:IProduct) => <Product key={product.id} product={product} />)
-      // return temp.map((product:TProduct) => <Product key={product.product.id} product={product.product} />)
     } else {
       return allData?.data?.products.map((product : IProduct) => <Product key={product.id} product={product}/>)
     }

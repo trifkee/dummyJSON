@@ -6,5 +6,7 @@ export const useFetchCategories = (key:string) => {
         queryKey: [key],
         queryFn: () => fetchCategories(),
         refetchOnWindowFocus: false,
+        enabled: false,
+        
     })
 }
