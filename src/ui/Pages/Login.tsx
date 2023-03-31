@@ -33,20 +33,26 @@ function Login() {
             })
           })
           .then(res => res.json())
-    }
-
-    const handleOnSuccess = (data:any) => {
-        if(data?.token){
+          .then( data => {
             setLogged(true)
             localStorage.setItem('user', data.id)
             localStorage.setItem('token', data.token)
             navigate('/')
-        }
+          })
     }
+
+    // const handleOnSuccess = (data:any) => {
+    //     if(data?.token){
+    //         setLogged(true)
+    //         localStorage.setItem('user', data.id)
+    //         localStorage.setItem('token', data.token)
+    //         navigate('/')
+    //     }
+    // }
 
     const { mutate:handleSubmit } = useMutation({
         mutationFn: fetchUser,
-        onSuccess: data => handleOnSuccess(data),
+        // onSuccess: data => handleOnSuccess(data),
         onError: err => console.log(err)
     })
 

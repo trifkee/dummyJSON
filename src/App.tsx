@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect } from "react";
 import { Routes, Route, redirect } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -32,7 +34,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient} >
       <div className="App">
-        <Nav />
+      <Nav />
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />

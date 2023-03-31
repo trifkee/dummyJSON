@@ -11,7 +11,7 @@ type PostProps = {
     }
 }
 
-function Post({...props}:PostProps) {
+function Post(props:PostProps) {
 
     return (
         <div>
