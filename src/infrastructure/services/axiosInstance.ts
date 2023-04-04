@@ -10,19 +10,16 @@ const instance = axios.create({
 
 instance.interceptors.response.use( 
     res => res,
-    err => console.log(err)
+    err => {
+        if(err.response.status === 401) {
+            localStorage.removeItem('token')
+            localStorage.removeItem('user')
+            const win: Window = window
+            win.location = '/login'
+        }
+
+        throw new Error('Error have occured:', err)
+    }
    )
 
 export default instance
-
-
-// {
-//     if(err.response.status === 401) {
-//         localStorage.removeItem('token')
-//         localStorage.removeItem('user')
-//         const win: Window = window
-//         win.location = '/login'
-//     }
-   
-//     throw new Error('Error have occured:', err)
-// }
