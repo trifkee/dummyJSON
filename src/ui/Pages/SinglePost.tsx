@@ -55,8 +55,6 @@ function SinglePost() {
         return <p>{/*<ion-icon name="chatbubbles"></ion-icon>*/}💬 No comments yet.</p>
     }
 
-    console.log(user)
-
     return (
         <section style={{marginTop:'4rem'}} className='margins'>
             <div>
