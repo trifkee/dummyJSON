@@ -12,11 +12,12 @@ instance.interceptors.response.use(
     res => res,
     err => {
         if(err.response.status === 401) {
+            localStorage.removeItem('token')
+            localStorage.removeItem('user')
             const win: Window = window
             win.location = '/login'
         }
-        localStorage.removeItem('token')
-        localStorage.removeItem('user')
+       
         throw new Error('Error have occured:', err)
 })
 

@@ -25,14 +25,14 @@ export interface Comment{
 }
 
 export interface AddCommentOnPost {
-    postId?:string,
+    postId?:string | null,
     userId?:string,
     key?:string,
     url:string,
     body: {
-        body:string,
-        postId:string,
-        userId:string
+        body:string | null,
+        postId:string | undefined,
+        userId:string | null
     }
 }
 

@@ -16,6 +16,7 @@ import NewPost from "./ui/Pages/NewPost";
 import AllPosts from './ui/Pages/AllPosts';
 // CUSTOM HOOKS
 import useAuth from "./hooks/useAuth";
+import { EditProfil } from "./ui/Pages/EditProfile";
 
 const queryClient = new QueryClient()
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/products/:searchValue" element={<Search />} />
           <Route path="/profile/:userId" element={<User />} />
           <Route path="/profile/:userId/new-post" element={<NewPost /> }/>
+          <Route path="/profile/:userId/edit-profile" element={<EditProfil/>} />
           <Route path="/posts/:postId" element={<SinglePost/> } />
           <Route path="/posts" element={<AllPosts />} />
         </Routes>

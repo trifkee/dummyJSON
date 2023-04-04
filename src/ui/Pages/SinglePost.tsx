@@ -19,16 +19,20 @@ function SinglePost() {
 
     let body = {
         body:comment,
-        postId: id || '- 1',
-        userId: localUserId || '-1',
+        postId: id,
+        userId: localUserId,
     }
     
     // CUSTOM HOOKS
     // const { mutate } = usePostComment('comment', `https://dummyjson.com/auth/comments/add`, body)
     const { mutate } = usePostComment({key:'comment', url:`https://dummyjson.com/auth/comments/add`, body})
     const { data } = useFetchPost('Post', `${id}`)
-    const { data:user } = useFetchUser('PostUser', `${localUserId}`)
+    const { data:user, refetch } = useFetchUser('PostUser', `${localUserId}`)
     const { data:comments } = useFetchComments('PostComments', `${id}`)
+
+    useEffect(() => {
+        refetch()
+    }, [])
 
     // useEffect(() => {
     //     if(posted){
@@ -48,8 +52,10 @@ function SinglePost() {
                 )
             })
         }
-        return <p>{/*<ion-icon name="chatbubbles"></ion-icon>*/} No comments yet.</p>
+        return <p>{/*<ion-icon name="chatbubbles"></ion-icon>*/}💬 No comments yet.</p>
     }
+
+    console.log(user)
 
     return (
         <section style={{marginTop:'4rem'}} className='margins'>
@@ -66,7 +72,7 @@ function SinglePost() {
                     </div>
                 </div>
                 <p>{data?.data.body}</p>
-                <p className='post-reaction'>{/*<ion-icon name="happy-outline"></ion-icon>*/} {data?.data.reactions}</p>
+                <p className='post-reaction'>{/*<ion-icon name="happy-outline"></ion-icon>*/} 😄{data?.data.reactions}</p>
             </div>
 
             <div className='allComments' style={{marginTop:'1rem'}}>

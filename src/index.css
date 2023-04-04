@@ -179,7 +179,7 @@ nav ul a{
   gap: 1rem;
   /* font-weight: 800; */
   border-radius: .35rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 /* .profile ion-icon{
@@ -724,6 +724,17 @@ article{
   margin-top: 1rem;
 }
 
+.edit-btn-user{
+  background-color: var(--white)!important;
+  color: var(--purple)!important;
+  font-weight: 600;
+  display: flex;
+}
+
+.user-cta{
+  font-size: .6rem!important;
+}
+
 .users-list > a{
   padding: .5rem;
   /* padding-right: 1rem; */
@@ -759,6 +770,48 @@ article{
   color: var(--white);
   font-weight: 800;
   width: 10rem;
+}
+
+.profile-info-edit{
+  margin-top: 1rem;
+  font-weight: 800;
+  display: grid;
+  grid-gap: .5rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.profile-info-edit > div:nth-child(1){
+  grid-column: 1 / -1;
+}
+.profile-info-edit> div:nth-child(2){
+  grid-column: 1 / -1;
+}
+
+.profile-info-edit input {
+  padding: .5rem 1rem;
+  border: 2px solid var(--purple);
+}
+
+.profile-info-edit button {
+  padding: .5rem 1rem;
+  width: 100%;
+  /* grid-column: 1/ -1; */
+  font-weight: 800;
+  color: var(--white);
+  font-size: 1rem;
+  background-color: var(--purple);
+  border: none;
+  border-radius: .25rem;
+}
+
+.profile-info-edit button:nth-child(2){
+  background-color: #ee4b4b;
+  color: var(--white);
+}
+
+.profile-info-edit > div{
+  display: flex;
+  flex-direction: column;
 }
 
 @media (min-width:500px){

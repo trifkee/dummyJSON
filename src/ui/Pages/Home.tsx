@@ -32,7 +32,7 @@ function Home() {
   let path = categoryName === 'all' ? 'products' : `products/category/${categoryName}`
 
   const { data:allData, isFetching, refetch, isError } = useFetchProducts('allProducts', path)
-  const { data:categories } = useFetchCategories('categories')
+  const { data:categories, refetch:refetchCategory } = useFetchCategories('categories')
 
   // FUNCTIONS
   const handleCategory = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -55,6 +55,7 @@ function Home() {
   
   useEffect(() => {
     refetch()
+    refetchCategory()
   }, [categoryName])
   
   // IF DATA IS FETCHING

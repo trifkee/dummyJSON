@@ -1,3 +1,5 @@
+import { TUser } from "../../../ui/Pages/EditProfile";
+
 export interface User{
    id: number,
    username:string, 
@@ -10,4 +12,10 @@ export interface User{
 export interface UserLoginRequest {
    username:string,
    password: string,
+}
+
+export interface UpdateUser {
+   key?:string,
+   url:string,
+   body: TUser | null
 }

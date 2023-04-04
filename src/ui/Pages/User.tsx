@@ -7,6 +7,7 @@ import { useFetchUserPosts } from '../../infrastructure/API/queries/useFetchUser
 // UI
 import Post from '../Components/Post'
 import NewPost from './NewPost'
+import { Link } from 'react-router-dom'
 
 function User() {
   const currUser = localStorage.getItem('user')
@@ -42,7 +43,7 @@ function User() {
   }
 
   // NAVIGATE TO THE PAGE 'create new post'
-  const handleNewPost = () => {
+  const handleNewPost = (e:React.MouseEvent) => {
     setActive(true)
   }
 
@@ -89,9 +90,12 @@ function User() {
             <h2>{user?.data.username}</h2>
             <p style={{fontSize:'.9rem'}}>{`${user?.data.firstName} ${user?.data.lastName}`}</p>
           </div>
-        {currUser === id && <button onClick={handleLogOut}>Sign out 🔒{/*<ion-icon aria-hidden="true" style={{fontSize:'1.2rem'}} name="log-out-outline"></ion-icon>*/}</button>}
+        {currUser === id && <div className='user-cta' style={{display:'flex', gap:"1rem", width:'100%'}}>
+          <button  style={{width:'60%'}} onClick={handleLogOut}>Sign out 🔒</button>
+          <Link to={`/profile/${id}/edit-profile`} data-name='edit' style={{width:'40%', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'1rem', borderRadius:'.3rem'}} className='edit-btn-user' >Edit profile🔧</Link>
+        </div>}
         </div>
-        {currUser === id && <button onClick={handleNewPost} className='new-post'>Create new post 📤{/*<ion-icon aria-hidden="true" name="add-circle"></ion-icon>*/}</button>}
+        {currUser === id && <button data-name='create-post'  onClick={handleNewPost} className='new-post'>Create new post 📤{/*<ion-icon aria-hidden="true" name="add-circle"></ion-icon>*/}</button>}
         <div className="profile-posts">
           {showUsersPosts()}
         </div>

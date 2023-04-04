@@ -2,14 +2,15 @@ import { useState, useEffect } from 'react'
 
 function useAuth() {
     const [logged, setLogged] = useState(false)
+    const user = localStorage.getItem('user')
 
     let token = localStorage.getItem('token')
 
     useEffect(() => {
 
-        if(token) setLogged(true)
+        if(token && user) setLogged(true)
 
-    }, [token])
+    }, [token, user])
 
     return {logged, setLogged}
 }

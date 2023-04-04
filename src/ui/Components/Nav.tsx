@@ -1,18 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Link, redirect } from 'react-router-dom'
 import useAuth from '../../hooks/useAuth'
 import { useFetchUser } from '../../infrastructure/API/queries/useFetchUser'
 
 function Nav() {
   let currUser = localStorage.getItem('user')
-
   // FETCH USER
   const { data:user } = useFetchUser('user', `${currUser}`) 
   
   const [active, isActive] = useState(false)
   
-  const {logged} = useAuth()
-
+  // const {logged, setLogged} = useAuth()
   
   // TOGGLE NAV ON MOBILE
   const handleClick = () => {
