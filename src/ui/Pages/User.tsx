@@ -91,8 +91,8 @@ function User() {
             <p style={{fontSize:'.9rem'}}>{`${user?.data.firstName} ${user?.data.lastName}`}</p>
           </div>
         {currUser === id && <div className='user-cta' style={{display:'flex', gap:"1rem", width:'100%'}}>
-          <button  style={{width:'60%'}} onClick={handleLogOut}>Sign out 🔒</button>
-          <Link to={`/profile/${id}/edit-profile`} data-name='edit' style={{width:'40%', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'1rem', borderRadius:'.3rem'}} className='edit-btn-user' >Edit profile🔧</Link>
+          <button  style={{width:'90%'}} onClick={handleLogOut}>Sign out 🔒</button>
+          <Link to={`/profile/${id}/edit-profile`} data-name='edit' style={{width:'10%', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'1rem', borderRadius:'.3rem'}} className='edit-btn-user' >🔧</Link>
         </div>}
         </div>
         {currUser === id && <button data-name='create-post'  onClick={handleNewPost} className='new-post'>Create new post 📤{/*<ion-icon aria-hidden="true" name="add-circle"></ion-icon>*/}</button>}
