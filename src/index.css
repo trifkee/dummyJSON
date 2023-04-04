@@ -778,6 +778,7 @@ article{
   display: grid;
   grid-gap: .5rem;
   grid-template-columns: repeat(2, 1fr);
+  /* background-color: red;  */
 }
 
 .profile-info-edit > div:nth-child(1){
@@ -805,13 +806,18 @@ article{
 }
 
 .profile-info-edit button:nth-child(2){
-  background-color: #ee4b4b;
+  background-color: var(--gray);
   color: var(--white);
 }
 
 .profile-info-edit > div{
   display: flex;
   flex-direction: column;
+}
+
+.delete-account-cta{
+  background-color: rgb(234, 21, 18)!important;
+  color: var(--white)!important;
 }
 
 @media (min-width:500px){
